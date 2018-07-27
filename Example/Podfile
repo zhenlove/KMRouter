@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'KMRouter_Example' do
+  pod 'KMRouter', :path => '../'
+
+  target 'KMRouter_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
