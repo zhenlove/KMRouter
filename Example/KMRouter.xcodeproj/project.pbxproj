@@ -14,6 +14,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		64799AFC210AD72C00FF2589 /* KMRouter in Frameworks */ = {isa = PBXBuildFile; fileRef = 64799AFB210AD72C00FF2589 /* KMRouter */; };
+		64799B02210AFAAB00FF2589 /* KMModuleA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64799B01210AFAAB00FF2589 /* KMModuleA.swift */; };
 		E069F220FC88136D6FC17A23 /* Pods_KMRouter_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D674FDFA98FCCD91966B75E /* Pods_KMRouter_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +42,8 @@
 		607FACE51AFB9204008FA782 /* KMRouter_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KMRouter_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		64799AFB210AD72C00FF2589 /* KMRouter */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KMRouter; sourceTree = BUILT_PRODUCTS_DIR; };
+		64799B01210AFAAB00FF2589 /* KMModuleA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMModuleA.swift; sourceTree = "<group>"; };
 		671B5FD1649EAA353D40237B /* Pods-KMRouter_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMRouter_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KMRouter_Tests/Pods-KMRouter_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		7F44A2A301C84C803D5C0866 /* Pods_KMRouter_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KMRouter_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		904F43E60177E2E380B10437 /* Pods-KMRouter_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMRouter_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KMRouter_Example/Pods-KMRouter_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64799AFC210AD72C00FF2589 /* KMRouter in Frameworks */,
 				E069F220FC88136D6FC17A23 /* Pods_KMRouter_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +77,7 @@
 		0BDAA5A7D3AEEA7E86C5AEF7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64799AFB210AD72C00FF2589 /* KMRouter */,
 				9D674FDFA98FCCD91966B75E /* Pods_KMRouter_Example.framework */,
 				7F44A2A301C84C803D5C0866 /* Pods_KMRouter_Tests.framework */,
 			);
@@ -108,6 +114,7 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				64799B01210AFAAB00FF2589 /* KMModuleA.swift */,
 			);
 			name = "Example for KMRouter";
 			path = KMRouter;
@@ -212,10 +219,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = XYBK7B7U6R;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = XYBK7B7U6R;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -322,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64799B02210AFAAB00FF2589 /* KMModuleA.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
@@ -469,6 +479,7 @@
 			baseConfigurationReference = 904F43E60177E2E380B10437 /* Pods-KMRouter_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XYBK7B7U6R;
 				INFOPLIST_FILE = KMRouter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -484,6 +495,7 @@
 			baseConfigurationReference = 9D917089DB5650628CEBAD2C /* Pods-KMRouter_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XYBK7B7U6R;
 				INFOPLIST_FILE = KMRouter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -498,6 +510,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F42120302BB090AF31573C6B /* Pods-KMRouter_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = XYBK7B7U6R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -520,6 +533,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 671B5FD1649EAA353D40237B /* Pods-KMRouter_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = XYBK7B7U6R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
