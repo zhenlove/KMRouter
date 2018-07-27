@@ -1,0 +1,6 @@
+framework module KMRouter {
+  umbrella header "KMRouter-umbrella.h"
+
+  export *
+  module * { export * }
+}

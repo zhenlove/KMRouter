@@ -1,0 +1,22 @@
+{
+  "name": "KMRouter",
+  "version": "0.1.0",
+  "summary": "A short description of KMRouter.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/zhenlove/KMRouter",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "zhenlove": "121910347@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/zhenlove/KMRouter.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "KMRouter/Classes/**/*"
+}

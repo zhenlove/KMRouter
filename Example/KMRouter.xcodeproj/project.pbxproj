@@ -28,8 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2E9D6329919EC8565F0E8543 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		4D52DE792B8DF6F94A6B3C85 /* KMRouter.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = KMRouter.podspec; path = ../KMRouter.podspec; sourceTree = "<group>"; };
+		2E9D6329919EC8565F0E8543 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		4D52DE792B8DF6F94A6B3C85 /* KMRouter.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = KMRouter.podspec; path = ../KMRouter.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		607FACD01AFB9204008FA782 /* KMRouter_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KMRouter_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		904F43E60177E2E380B10437 /* Pods-KMRouter_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMRouter_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KMRouter_Example/Pods-KMRouter_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		9D674FDFA98FCCD91966B75E /* Pods_KMRouter_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KMRouter_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D917089DB5650628CEBAD2C /* Pods-KMRouter_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMRouter_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-KMRouter_Example/Pods-KMRouter_Example.release.xcconfig"; sourceTree = "<group>"; };
-		BD0DFC1C57F2BAD2EF6A1A1E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		BD0DFC1C57F2BAD2EF6A1A1E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F42120302BB090AF31573C6B /* Pods-KMRouter_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMRouter_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KMRouter_Tests/Pods-KMRouter_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

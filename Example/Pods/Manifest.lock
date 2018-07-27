@@ -1,0 +1,16 @@
+PODS:
+  - KMRouter (0.1.0)
+
+DEPENDENCIES:
+  - KMRouter (from `../`)
+
+EXTERNAL SOURCES:
+  KMRouter:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  KMRouter: 705f55fd13b0af23d07c03c1ba2daf618d4c1a19
+
+PODFILE CHECKSUM: ddf11a6bf0531bf24c225cc8d84ba638a4c274ca
+
+COCOAPODS: 1.5.3
