@@ -16,8 +16,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-        KMRouter().push(URL(string: "KMModuleA"), self) { (result, error) in
+        KMRouter().push("KMModuleA?titleName=张三", self) { (result, error) in
             if let result = result {
                 print("失败:\(String(describing: result))")
             }

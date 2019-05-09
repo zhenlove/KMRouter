@@ -25,7 +25,7 @@ class KMModuleB: UIViewController,KMRouterProtocol {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 
-        KMRouter().push(URL(string: "KMModuleC"), self) { (result, error) in
+        KMRouter().push("KMModuleC", self) { (result, error) in
             if let result = result {
                 print("成功:\(String(describing: result))")
             }

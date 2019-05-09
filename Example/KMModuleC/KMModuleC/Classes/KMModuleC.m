@@ -32,9 +32,8 @@ typedef void(^CallBack)(id _Nonnull result,NSError *_Nonnull error);
         self.callBack(@"ssssssss",nil);
     }
     
-    NSURL *url = [[NSURL alloc]initWithString:@"KMModuleD"];
     KMRouter *router = [[KMRouter alloc]init];
-    [router push:url control:self completion:^(id _Nonnull result, NSError * _Nonnull error) {
+    [router push:@"KMModuleD" control:self completion:^(id _Nonnull result, NSError * _Nonnull error) {
         if (result) {
             NSLog(@"%@",result);
         }

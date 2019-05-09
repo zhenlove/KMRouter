@@ -10,19 +10,23 @@ import Foundation
 public typealias  KMCallBack = (_ result:Any?,  _ error:Error?) ->Void
 
 /// 路由错误信息
-///
-/// - badURL: URL错误
-/// - noNavigation: 没有找到导航栏
 public enum KMRouterError:Error, LocalizedError {
     
+    /// URL错误
     case badURL
+    
+    /// 没有找到导航栏
     case noNavigation
+    
+    /// 自定义错误可惜
+    case customError(String)
     
     /// 描述发生错误的本地化消息。
     public var errorDescription: String? {
         switch self {
-        case .badURL: return "URL 路径错误"
+        case .badURL: return "URL 解析失败"
         case .noNavigation: return "没有传入导航控制器"
+        case .customError(let str): return str
         }
     }
 }
@@ -31,6 +35,7 @@ public enum KMRouterError:Error, LocalizedError {
 /// 基础协议
 @objc public protocol KMRouterProtocol {
     
+    /// 方便持有block
     @objc optional var callBack:KMCallBack? { get set }
     
     /// 返回数据给调用者
@@ -44,30 +49,66 @@ public enum KMRouterError:Error, LocalizedError {
 open class KMRouter :NSObject{
     
     
+    /// 创建URL组件
+    ///
+    /// - Parameter urlStr: 路由地址
+    /// - Returns: URL组件
+    func createComponents(_ urlStr:String?) -> URLComponents? {
+        if let urlStr = urlStr?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            return URLComponents.init(string: urlStr)
+        }
+        return nil
+    }
+    
+    /// 创建类名
+    ///
+    /// - Parameter components: URL组件
+    /// - Returns: 类名
+    func createClassType(_ components:URLComponents) -> UIViewController.Type? {
+        if let className = components.url?.lastPathComponent {
+            return NSClassFromString(className) as? UIViewController.Type
+        }
+        return nil
+    }
+    
+    /// 创建实例
+    ///
+    /// - Parameters:
+    ///   - mocelClass: 类名
+    ///   - components: URL组件
+    /// - Returns: 实例
+    func createObject(_ mocelClass:UIViewController.Type, _ components:URLComponents) -> UIViewController {
+        let obj = mocelClass.init()
+        if let parmt = components.queryItems {
+            for item in parmt {
+                obj.setValue(item.value, forKey: item.name)
+            }
+        }
+        return obj
+    }
+    
     /// 创建控制器
     ///
-    /// - Parameter url: 路由路径
+    /// - Parameter urlStr: 路由地址
     /// - Returns: 返回控制器
-    func viewControllerFromUrl(_ url:URL?) -> UIViewController? {
-
-        if let className = url?.pathComponents.first,
-            let obj = NSClassFromString(className),
-                let model = obj as? UIViewController.Type {
-                    return model.init()
+    func viewControllerFromUrl(_ urlStr:String?) -> UIViewController? {
+        if let components = createComponents(urlStr),
+            let modelClass = createClassType(components){
+                return createObject(modelClass, components)
         }
-        return nil;
+        return nil
     }
     
     
-    /// 导航显示
+    /// 导航显示控制器
     ///
     /// - Parameters:
-    ///   - url: 路由路径
+    ///   - urlStr: 路由地址
     ///   - control: 承载控制器
     ///   - completion: 统一回调
     @objc(push:control:completion:)
-    public func push(_ url:URL?, _ control: UIViewController,_ completion:KMCallBack? = nil) {
-        if let vc = viewControllerFromUrl(url) {
+    public func push(_ urlStr:String?, _ control: UIViewController,_ completion:KMCallBack? = nil) {
+        if let vc = viewControllerFromUrl(urlStr) {
             if let nav = control.navigationController {
                 nav.pushViewController(vc, animated: true)
             }else{
@@ -81,15 +122,15 @@ open class KMRouter :NSObject{
         }
     }
     
-    /// 模态显示
+    /// 模态显示控制器
     ///
     /// - Parameters:
-    ///   - url: 路由路径
+    ///   - urlStr: 路由地址
     ///   - control: 承载控制器
     ///   - completion: 统一回调
     @objc(persent:control:completion:)
-    public func persent(_ url:URL?, _ control: UIViewController,_ completion:KMCallBack? = nil) {
-        if let vc = viewControllerFromUrl(url) {
+    public func persent(_ urlStr:String?, _ control: UIViewController,_ completion:KMCallBack? = nil) {
+        if let vc = viewControllerFromUrl(urlStr) {
             control.present(vc, animated: true, completion: nil)
             if let vc = vc as? KMRouterProtocol, let callback = completion {
                 vc.handle?(completion: callback)

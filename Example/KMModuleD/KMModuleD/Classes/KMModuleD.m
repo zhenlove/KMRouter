@@ -22,14 +22,13 @@
     self.callBack = completion;
 }
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSURL *url = [[NSURL alloc]initWithString:@"KMModuleA"];
     KMRouter *router = [[KMRouter alloc]init];
-    [router push:url control:self completion:^(id _Nonnull result, NSError * _Nonnull error) {
+    [router push:@"KMModuleA" control:self completion:^(id _Nonnull result, NSError * _Nonnull error) {
         if (result) {
             NSLog(@"%@",result);
         }
         if (error) {
-            NSLog(@"%@",error.description);
+            NSLog(@"%@",error.localizedDescription);
         }
     }];
 }
