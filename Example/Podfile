@@ -5,9 +5,9 @@ platform :ios, '10.0'
 target 'KMRouter-Example' do
 
   pod 'KMRouter', :path => '../'
-  pod 'KMModuleA', :path => '../KMModuleA/'
-  pod 'KMModuleB', :path => '../KMModuleB/'
-  pod 'KMModuleC', :path => '../KMModuleC/'
-  pod 'KMModuleD', :path => '../KMModuleD/'
+  pod 'KMModuleA', :path => './KMModuleA/'
+  pod 'KMModuleB', :path => './KMModuleB/'
+  pod 'KMModuleC', :path => './KMModuleC/'
+  pod 'KMModuleD', :path => './KMModuleD/'
 
 end
