@@ -1,4 +1,4 @@
-framework module KMRouter {
+module KMRouter {
   umbrella header "KMRouter-umbrella.h"
 
   export *

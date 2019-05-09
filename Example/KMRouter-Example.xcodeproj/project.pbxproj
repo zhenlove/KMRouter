@@ -12,10 +12,13 @@
 		64E4C971228051B9001B8547 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E4C96F228051B9001B8547 /* Main.storyboard */; };
 		64E4C973228051BA001B8547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64E4C972228051BA001B8547 /* Assets.xcassets */; };
 		64E4C976228051BA001B8547 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E4C974228051BA001B8547 /* LaunchScreen.storyboard */; };
-		BA109EA60A901CA72814915C /* Pods_KMRouter_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D0CD335D2780272CD31F09 /* Pods_KMRouter_Example.framework */; };
+		8E89BA338639592704736B01 /* libPods-KMRouter-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F93252A51F495FA3F6C2601 /* libPods-KMRouter-Example.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0CB6C9C274080272E17F5F40 /* Pods-KMRouter-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMRouter-Example.release.xcconfig"; path = "Target Support Files/Pods-KMRouter-Example/Pods-KMRouter-Example.release.xcconfig"; sourceTree = "<group>"; };
+		1F93252A51F495FA3F6C2601 /* libPods-KMRouter-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KMRouter-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		56DACA0BD7D6C7B710BEF902 /* Pods-KMRouter-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMRouter-Example.debug.xcconfig"; path = "Target Support Files/Pods-KMRouter-Example/Pods-KMRouter-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		64E4C968228051B9001B8547 /* KMRouter-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KMRouter-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64E4C96B228051B9001B8547 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64E4C96D228051B9001B8547 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -23,9 +26,6 @@
 		64E4C972228051BA001B8547 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64E4C975228051BA001B8547 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64E4C977228051BA001B8547 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		66D0CD335D2780272CD31F09 /* Pods_KMRouter_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KMRouter_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6B13EE8152658AB3D34C5D9 /* Pods-KMRouter-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMRouter-Example.debug.xcconfig"; path = "Target Support Files/Pods-KMRouter-Example/Pods-KMRouter-Example.debug.xcconfig"; sourceTree = "<group>"; };
-		EBBE6B899E31176BFA2B2F3A /* Pods-KMRouter-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMRouter-Example.release.xcconfig"; path = "Target Support Files/Pods-KMRouter-Example/Pods-KMRouter-Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA109EA60A901CA72814915C /* Pods_KMRouter_Example.framework in Frameworks */,
+				8E89BA338639592704736B01 /* libPods-KMRouter-Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +43,7 @@
 		20274C4F9964F37BEB43E87C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				66D0CD335D2780272CD31F09 /* Pods_KMRouter_Example.framework */,
+				1F93252A51F495FA3F6C2601 /* libPods-KMRouter-Example.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -53,8 +53,8 @@
 			children = (
 				64E4C96A228051B9001B8547 /* KMRouter-Example */,
 				64E4C969228051B9001B8547 /* Products */,
-				7B0A031FDC43F65812791120 /* Pods */,
 				20274C4F9964F37BEB43E87C /* Frameworks */,
+				D43CD2475261CE13CDC7CACC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,11 +79,11 @@
 			path = "KMRouter-Example";
 			sourceTree = "<group>";
 		};
-		7B0A031FDC43F65812791120 /* Pods */ = {
+		D43CD2475261CE13CDC7CACC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B6B13EE8152658AB3D34C5D9 /* Pods-KMRouter-Example.debug.xcconfig */,
-				EBBE6B899E31176BFA2B2F3A /* Pods-KMRouter-Example.release.xcconfig */,
+				56DACA0BD7D6C7B710BEF902 /* Pods-KMRouter-Example.debug.xcconfig */,
+				0CB6C9C274080272E17F5F40 /* Pods-KMRouter-Example.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -96,11 +96,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64E4C97A228051BA001B8547 /* Build configuration list for PBXNativeTarget "KMRouter-Example" */;
 			buildPhases = (
-				0000CC4FA9A3E386C44144C0 /* [CP] Check Pods Manifest.lock */,
+				B5E307E7B1A3CB9D8D61D217 /* [CP] Check Pods Manifest.lock */,
 				64E4C964228051B9001B8547 /* Sources */,
 				64E4C965228051B9001B8547 /* Frameworks */,
 				64E4C966228051B9001B8547 /* Resources */,
-				4D2227312E02855DB4E33DBA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -158,7 +157,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0000CC4FA9A3E386C44144C0 /* [CP] Check Pods Manifest.lock */ = {
+		B5E307E7B1A3CB9D8D61D217 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -178,28 +177,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4D2227312E02855DB4E33DBA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KMRouter-Example/Pods-KMRouter-Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/KMRouter/KMRouter.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMRouter.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KMRouter-Example/Pods-KMRouter-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -287,7 +264,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -342,7 +319,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -354,7 +331,7 @@
 		};
 		64E4C97B228051BA001B8547 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6B13EE8152658AB3D34C5D9 /* Pods-KMRouter-Example.debug.xcconfig */;
+			baseConfigurationReference = 56DACA0BD7D6C7B710BEF902 /* Pods-KMRouter-Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -373,7 +350,7 @@
 		};
 		64E4C97C228051BA001B8547 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EBBE6B899E31176BFA2B2F3A /* Pods-KMRouter-Example.release.xcconfig */;
+			baseConfigurationReference = 0CB6C9C274080272E17F5F40 /* Pods-KMRouter-Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

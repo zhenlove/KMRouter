@@ -1,16 +1,40 @@
 PODS:
+  - KMModuleA (0.0.1):
+    - KMRouter
+  - KMModuleB (0.0.1):
+    - KMRouter
+  - KMModuleC (0.0.1):
+    - KMRouter
+  - KMModuleD (0.0.1):
+    - KMRouter
   - KMRouter (0.1.1)
 
 DEPENDENCIES:
+  - KMModuleA (from `../KMModuleA/`)
+  - KMModuleB (from `../KMModuleB/`)
+  - KMModuleC (from `../KMModuleC/`)
+  - KMModuleD (from `../KMModuleD/`)
   - KMRouter (from `../`)
 
 EXTERNAL SOURCES:
+  KMModuleA:
+    :path: "../KMModuleA/"
+  KMModuleB:
+    :path: "../KMModuleB/"
+  KMModuleC:
+    :path: "../KMModuleC/"
+  KMModuleD:
+    :path: "../KMModuleD/"
   KMRouter:
     :path: "../"
 
 SPEC CHECKSUMS:
+  KMModuleA: 2719efe964d299b5f336d0252bbd61bcce027bf1
+  KMModuleB: 649fe707d26e882c68c5f6e9d26b3868e4faf3e0
+  KMModuleC: 8ef097d9e401ab75ec62c70ef095561370f97444
+  KMModuleD: 8e2fb01258edb6fd024712d233682cabf6c9cc07
   KMRouter: 650b355445a46f379947f68ab7b8af4b09e1d9b3
 
-PODFILE CHECKSUM: 943f24914e0ce2113effd85a817021f2ac8acdc6
+PODFILE CHECKSUM: 606ada721f0df8209d017d3910c8cef7cbee8b88
 
 COCOAPODS: 1.6.1
