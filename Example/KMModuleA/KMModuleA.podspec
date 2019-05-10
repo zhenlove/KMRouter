@@ -11,6 +11,8 @@ Pod::Spec.new do |s|
   s.author           = { 'zhenlove' => '121910347@qq.com' }
   s.source           = { :git => 'https://github.com/zhenlove/KMRouter.git', :tag => s.version.to_s }
   s.ios.deployment_target = '8.0'
+  s.static_framework = true
   s.source_files = 'KMModuleA/Classes/*.swift'
   s.dependency 'KMRouter'
+  s.dependency 'KMConfigure'
 end

@@ -53,7 +53,7 @@ open class KMRouter :NSObject{
     ///
     /// - Parameter urlStr: 路由地址
     /// - Returns: URL组件
-    func createComponents(_ urlStr:String?) -> URLComponents? {
+    class func createComponents(_ urlStr:String?) -> URLComponents? {
         if let urlStr = urlStr?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             return URLComponents.init(string: urlStr)
         }
@@ -64,7 +64,7 @@ open class KMRouter :NSObject{
     ///
     /// - Parameter components: URL组件
     /// - Returns: 类名
-    func createClassType(_ components:URLComponents) -> UIViewController.Type? {
+    class func createClassType(_ components:URLComponents) -> UIViewController.Type? {
         if let className = components.url?.lastPathComponent {
             return NSClassFromString(className) as? UIViewController.Type
         }
@@ -77,7 +77,7 @@ open class KMRouter :NSObject{
     ///   - mocelClass: 类名
     ///   - components: URL组件
     /// - Returns: 实例
-    func createObject(_ mocelClass:UIViewController.Type, _ components:URLComponents) -> UIViewController {
+    class func createObject(_ mocelClass:UIViewController.Type, _ components:URLComponents) -> UIViewController {
         let obj = mocelClass.init()
         if let parmt = components.queryItems {
             for item in parmt {
@@ -91,7 +91,7 @@ open class KMRouter :NSObject{
     ///
     /// - Parameter urlStr: 路由地址
     /// - Returns: 返回控制器
-    func viewControllerFromUrl(_ urlStr:String?) -> UIViewController? {
+    class func viewControllerFromUrl(_ urlStr:String?) -> UIViewController? {
         if let components = createComponents(urlStr),
             let modelClass = createClassType(components){
                 return createObject(modelClass, components)
@@ -107,7 +107,7 @@ open class KMRouter :NSObject{
     ///   - control: 承载控制器
     ///   - completion: 统一回调
     @objc(push:control:completion:)
-    public func push(_ urlStr:String?, _ control: UIViewController,_ completion:KMCallBack? = nil) {
+    public class func push(_ urlStr:String?, _ control: UIViewController,_ completion:KMCallBack? = nil) {
         if let vc = viewControllerFromUrl(urlStr) {
             if let nav = control.navigationController {
                 nav.pushViewController(vc, animated: true)
@@ -129,7 +129,7 @@ open class KMRouter :NSObject{
     ///   - control: 承载控制器
     ///   - completion: 统一回调
     @objc(persent:control:completion:)
-    public func persent(_ urlStr:String?, _ control: UIViewController,_ completion:KMCallBack? = nil) {
+    public class func persent(_ urlStr:String?, _ control: UIViewController,_ completion:KMCallBack? = nil) {
         if let vc = viewControllerFromUrl(urlStr) {
             control.present(vc, animated: true, completion: nil)
             if let vc = vc as? KMRouterProtocol, let callback = completion {

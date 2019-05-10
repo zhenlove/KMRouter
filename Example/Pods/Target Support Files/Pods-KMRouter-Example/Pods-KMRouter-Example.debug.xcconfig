@@ -1,12 +1,12 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/KMModuleC" "${PODS_ROOT}/Headers/Public/KMModuleD"
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/KMModuleA" "${PODS_CONFIGURATION_BUILD_DIR}/KMModuleB" "${PODS_CONFIGURATION_BUILD_DIR}/KMModuleC" "${PODS_CONFIGURATION_BUILD_DIR}/KMModuleD" "${PODS_CONFIGURATION_BUILD_DIR}/KMRouter"
-OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/KMModuleA/KMModuleA.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/KMModuleB/KMModuleB.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/KMRouter/KMRouter.modulemap"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"KMModuleA" -l"KMModuleB" -l"KMModuleC" -l"KMModuleD" -l"KMRouter"
-OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/KMModuleA/KMModuleA.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/KMModuleB/KMModuleB.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/KMRouter/KMRouter.modulemap"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/KMConfigure" "${PODS_CONFIGURATION_BUILD_DIR}/KMModuleA" "${PODS_CONFIGURATION_BUILD_DIR}/KMModuleB" "${PODS_CONFIGURATION_BUILD_DIR}/KMModuleC" "${PODS_CONFIGURATION_BUILD_DIR}/KMModuleD" "${PODS_CONFIGURATION_BUILD_DIR}/KMRouter"
+OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/KMConfigure/KMConfigure.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/KMModuleA/KMModuleA.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/KMModuleB/KMModuleB.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/KMRouter/KMRouter.modulemap" -fmodule-map-file="${PODS_ROOT}/Headers/Public/KMModuleC/KMModuleC.modulemap" -fmodule-map-file="${PODS_ROOT}/Headers/Public/KMModuleD/KMModuleD.modulemap"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"KMConfigure" -l"KMModuleA" -l"KMModuleB" -l"KMModuleC" -l"KMModuleD" -l"KMRouter"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/KMConfigure/KMConfigure.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/KMModuleA/KMModuleA.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/KMModuleB/KMModuleB.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/KMRouter/KMRouter.modulemap" -Xcc -fmodule-map-file="${PODS_ROOT}/Headers/Public/KMModuleC/KMModuleC.modulemap" -Xcc -fmodule-map-file="${PODS_ROOT}/Headers/Public/KMModuleD/KMModuleD.modulemap"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods
-SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/KMModuleA" "${PODS_CONFIGURATION_BUILD_DIR}/KMModuleB" "${PODS_CONFIGURATION_BUILD_DIR}/KMRouter"
+SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/KMConfigure" "${PODS_CONFIGURATION_BUILD_DIR}/KMModuleA" "${PODS_CONFIGURATION_BUILD_DIR}/KMModuleB" "${PODS_CONFIGURATION_BUILD_DIR}/KMRouter"

@@ -8,6 +8,7 @@
 
 import UIKit
 import KMRouter
+import KMConfigure
 @objc(KMModuleB)
 class KMModuleB: UIViewController,KMRouterProtocol {
 
@@ -25,7 +26,7 @@ class KMModuleB: UIViewController,KMRouterProtocol {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 
-        KMRouter().push("KMModuleC", self) { (result, error) in
+        KMRouter.push(KMConfigure.getModuleCUrlStr(), self) { (result, error) in
             if let result = result {
                 print("成功:\(String(describing: result))")
             }

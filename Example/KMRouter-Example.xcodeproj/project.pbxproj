@@ -85,7 +85,6 @@
 				56DACA0BD7D6C7B710BEF902 /* Pods-KMRouter-Example.debug.xcconfig */,
 				0CB6C9C274080272E17F5F40 /* Pods-KMRouter-Example.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

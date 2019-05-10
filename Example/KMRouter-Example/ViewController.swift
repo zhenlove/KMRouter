@@ -8,6 +8,7 @@
 
 import UIKit
 import KMRouter
+import KMConfigure
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -16,7 +17,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        KMRouter().push("KMModuleA?titleName=张三", self) { (result, error) in
+        let url = KMConfigure.getModuleAUrlStr()
+       
+        KMRouter.push(url, self) { (result, error) in
             if let result = result {
                 print("失败:\(String(describing: result))")
             }

@@ -7,6 +7,7 @@
 
 #import "KMModuleD.h"
 @import KMRouter;
+@import KMConfigure;
 @interface KMModuleD ()<KMRouterProtocol>
 
 @end
@@ -22,8 +23,10 @@
     self.callBack = completion;
 }
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    KMRouter *router = [[KMRouter alloc]init];
-    [router push:@"KMModuleA" control:self completion:^(id _Nonnull result, NSError * _Nonnull error) {
+//    KMRouter *router = [[KMRouter alloc]init];
+    [KMRouter push:[KMConfigure getModuleAUrlStr]
+         control:self
+      completion:^(id _Nonnull result, NSError * _Nonnull error) {
         if (result) {
             NSLog(@"%@",result);
         }

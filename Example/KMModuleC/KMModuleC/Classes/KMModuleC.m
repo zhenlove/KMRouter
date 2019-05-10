@@ -7,6 +7,7 @@
 
 #import "KMModuleC.h"
 @import KMRouter;
+@import KMConfigure;
 
 typedef void(^CallBack)(id _Nonnull result,NSError *_Nonnull error);
 
@@ -32,8 +33,7 @@ typedef void(^CallBack)(id _Nonnull result,NSError *_Nonnull error);
         self.callBack(@"ssssssss",nil);
     }
     
-    KMRouter *router = [[KMRouter alloc]init];
-    [router push:@"KMModuleD" control:self completion:^(id _Nonnull result, NSError * _Nonnull error) {
+    [KMRouter push:[KMConfigure getModuleDUrlStr] control:self completion:^(id _Nonnull result, NSError * _Nonnull error) {
         if (result) {
             NSLog(@"%@",result);
         }

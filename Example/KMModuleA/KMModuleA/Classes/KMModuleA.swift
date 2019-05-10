@@ -8,6 +8,7 @@
 
 import UIKit
 import KMRouter
+import KMConfigure
 @objc(KMModuleA)
 class KMModuleA: UIViewController,KMRouterProtocol {
     
@@ -32,7 +33,7 @@ class KMModuleA: UIViewController,KMRouterProtocol {
         
         callBack?(nil,KMRouterError.customError("我错了"))
 
-        KMRouter().push("KMModuleB", self) { (result, error) in
+        KMRouter.push(KMConfigure.getModuleBUrlStr(), self) { (result, error) in
             if let result = result {
                 print("失败:\(String(describing: result))")
             }
