@@ -1,6 +1,0 @@
-module Pods_KMRouter_Example {
-  umbrella header "Pods-KMRouter-Example-umbrella.h"
-
-  export *
-  module * { export * }
-}
