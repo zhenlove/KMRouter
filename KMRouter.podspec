@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'KMRouter'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = '组件化开发beta'
   s.description      = <<-DESC
   1.全新组件化基础库，支持Swift、Objective-C。
