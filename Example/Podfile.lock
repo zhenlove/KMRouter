@@ -1,0 +1,49 @@
+PODS:
+  - KMConfigure (0.0.1)
+  - KMModuleA (0.0.1):
+    - KMConfigure
+    - KMRouter
+  - KMModuleB (0.0.1):
+    - KMConfigure
+    - KMRouter
+  - KMModuleC (0.0.1):
+    - KMConfigure
+    - KMRouter
+  - KMModuleD (0.0.1):
+    - KMConfigure
+    - KMRouter
+  - KMRouter (0.1.1)
+
+DEPENDENCIES:
+  - KMConfigure (from `./KMConfigure/`)
+  - KMModuleA (from `./KMModuleA/`)
+  - KMModuleB (from `./KMModuleB/`)
+  - KMModuleC (from `./KMModuleC/`)
+  - KMModuleD (from `./KMModuleD/`)
+  - KMRouter (from `../`)
+
+EXTERNAL SOURCES:
+  KMConfigure:
+    :path: "./KMConfigure/"
+  KMModuleA:
+    :path: "./KMModuleA/"
+  KMModuleB:
+    :path: "./KMModuleB/"
+  KMModuleC:
+    :path: "./KMModuleC/"
+  KMModuleD:
+    :path: "./KMModuleD/"
+  KMRouter:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  KMConfigure: 079f827433783599568b36fb482c3239cfdb2053
+  KMModuleA: e2ec0c4da9f3a5b24bd644328ccc19c422fb5a41
+  KMModuleB: f21a2a32c1c4adafabf728ef0166d8394cabeb68
+  KMModuleC: b3a3fddb36544d26beb9ac9a788c280ebcbaf21c
+  KMModuleD: b8840191ec1a637e8461220c91f6f91d76f07e77
+  KMRouter: 650b355445a46f379947f68ab7b8af4b09e1d9b3
+
+PODFILE CHECKSUM: 9f7228839f82751149068b04bbbf081430616d1a
+
+COCOAPODS: 1.6.1
