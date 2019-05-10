@@ -4,8 +4,9 @@ platform :ios, '10.0'
 
 target 'KMRouter-Example' do
 
-  pod 'KMRouter', :path => '../'
   pod 'KMConfigure', :path => './KMConfigure/'
+  pod 'KMRouter', :path => '../'
+#  pod 'KMRouter', :git=>'https://github.com/zhenlove/KMRouter.git'
   pod 'KMModuleA', :path => './KMModuleA/'
   pod 'KMModuleB', :path => './KMModuleB/'
   pod 'KMModuleC', :path => './KMModuleC/',:modular_headers => true
