@@ -8,13 +8,11 @@
 import UIKit
 
 @objc(KMConfigure)
-open class KMConfigure: NSObject {
-    
-}
+open class KMConfigure: NSObject {}
 
 // MARK: - 配置KMModuleA
+
 extension KMConfigure {
-    
     /// KMModuleA
     ///
     /// - Returns: 实例

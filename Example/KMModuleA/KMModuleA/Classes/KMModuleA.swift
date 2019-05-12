@@ -6,16 +6,14 @@
 //  Copyright © 2019 KM. All rights reserved.
 //
 
-import UIKit
-import KMRouter
 import KMConfigure
+import KMRouter
+import UIKit
 @objc(KMModuleA)
-class KMModuleA: UIViewController,KMRouterProtocol {
-    
+class KMModuleA: UIViewController, KMRouterProtocol {
     var callBack: KMCallBack?
     
     @objc var titleName: String?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +25,12 @@ class KMModuleA: UIViewController,KMRouterProtocol {
         callBack = completion
     }
     
-    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        callBack?(nil,KMRouterError.badURL)
         
-        callBack?(nil,KMRouterError.customError("我错了"))
-
-        KMRouter.push("\(KMConfigure.getModuleBUrlStr())?titleSB=李四", self) { (result, error) in
+        callBack?(nil, KMRouterError.customError("我错了"))
+        
+        KMRouter.push("\(KMConfigure.getModuleBUrlStr())?titleSB=李四", self) { result, error in
             if let result = result {
                 print("失败:\(String(describing: result))")
             }
@@ -42,7 +39,5 @@ class KMModuleA: UIViewController,KMRouterProtocol {
                 print("失败:\(String(describing: error))")
             }
         }
-        
     }
-
 }

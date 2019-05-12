@@ -7,11 +7,10 @@
 
 import Foundation
 
-public typealias  KMCallBack = (_ result:Any?,  _ error:Error?) ->Void
+public typealias KMCallBack = (_ result: Any?, _ error: Error?) -> Void
 
 /// 路由错误信息
-public enum KMRouterError:Error, LocalizedError {
-    
+public enum KMRouterError: Error, LocalizedError {
     /// URL错误
     case badURL
     
@@ -31,36 +30,33 @@ public enum KMRouterError:Error, LocalizedError {
     }
 }
 
-
 /// 基础协议
 @objc public protocol KMRouterProtocol {
-    
     /// 方便持有block
-    @objc optional var callBack:KMCallBack? { get set }
+    @objc optional var callBack: KMCallBack? { get set }
     
     /// 返回数据给调用者
     ///
     /// - Parameter completion: 统一回调
-    @objc optional func handle(completion:@escaping KMCallBack)
+    @objc optional func handle(completion: @escaping KMCallBack)
 }
 
-open class KMRouter :NSObject{
-    
+open class KMRouter: NSObject {
     /// 获取属性名
     ///
     /// - Parameter property: 属性对象
     /// - Returns: 属性名
     private class func getNameOf(property: objc_property_t) -> String? {
-        return String.init(cString: property_getName(property))
+        return String(cString: property_getName(property))
     }
     
     /// 获取属性名
     ///
     /// - Returns: 属性名
-    private class func getProperties(cls:AnyClass) -> Array<String>? {
+    private class func getProperties(cls: AnyClass) -> [String]? {
         var count = UInt32()
         guard let properties = class_copyPropertyList(cls, &count) else { return nil }
-        var types: Array<String> = []
+        var types: [String] = []
         for i in 0..<Int(count) {
             let property: objc_property_t = properties[i]
             /// 获取属性名
@@ -72,14 +68,13 @@ open class KMRouter :NSObject{
         return types
     }
     
-    
     /// 创建URL组件
     ///
     /// - Parameter urlStr: 路由地址
     /// - Returns: URL组件
-    private class func createComponents(_ urlStr:String?) -> URLComponents? {
+    private class func createComponents(_ urlStr: String?) -> URLComponents? {
         if let urlStr = urlStr?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-            return URLComponents.init(string: urlStr)
+            return URLComponents(string: urlStr)
         }
         return nil
     }
@@ -88,7 +83,7 @@ open class KMRouter :NSObject{
     ///
     /// - Parameter components: URL组件
     /// - Returns: 类名
-    private class func createClassType(_ components:URLComponents) -> NSObject.Type? {
+    private class func createClassType(_ components: URLComponents) -> NSObject.Type? {
         if let className = components.url?.lastPathComponent {
             return NSClassFromString(className) as? NSObject.Type
         }
@@ -101,15 +96,15 @@ open class KMRouter :NSObject{
     ///   - mocelClass: 类名
     ///   - components: URL组件
     /// - Returns: 实例
-    private class func createObject(_ mocelClass:NSObject.Type, _ components:URLComponents) -> NSObject {
+    private class func createObject(_ mocelClass: NSObject.Type, _ components: URLComponents) -> NSObject {
         let obj = mocelClass.init()
         
         if let parmt = components.queryItems,
-            let arr = getProperties(cls: mocelClass){
+            let arr = getProperties(cls: mocelClass) {
             for item in parmt {
                 if arr.contains(item.name) {
                     obj.setValue(item.value, forKey: item.name)
-                }else{
+                } else {
                     print("\(NSStringFromClass(mocelClass))类=>不存在属性:\(item.name)")
                 }
             }
@@ -122,9 +117,9 @@ open class KMRouter :NSObject{
     /// - Parameter urlStr: 路由地址
     /// - Returns: 实例
     @objc(objectFromUrl:)
-    public class func objectFromUrl(_ urlStr:String?) -> NSObject? {
+    public class func objectFromUrl(_ urlStr: String?) -> NSObject? {
         if let components = createComponents(urlStr),
-            let modelClass = createClassType(components){
+            let modelClass = createClassType(components) {
             return createObject(modelClass, components)
         }
         return nil
@@ -135,10 +130,9 @@ open class KMRouter :NSObject{
     /// - Parameter urlStr: 路由地址
     /// - Returns: 返回控制器
     @objc(viewControllerFromUrl:)
-    public class func viewControllerFromUrl(_ urlStr:String?) -> UIViewController? {
+    public class func viewControllerFromUrl(_ urlStr: String?) -> UIViewController? {
         return objectFromUrl(urlStr) as? UIViewController
     }
-    
     
     /// 导航显示控制器
     ///
@@ -147,18 +141,18 @@ open class KMRouter :NSObject{
     ///   - control: 承载控制器
     ///   - completion: 统一回调
     @objc(push:control:completion:)
-    public class func push(_ urlStr:String?, _ control: UIViewController,_ completion:KMCallBack? = nil) {
+    public class func push(_ urlStr: String?, _ control: UIViewController, _ completion: KMCallBack? = nil) {
         if let vc = viewControllerFromUrl(urlStr) {
             if let nav = control.navigationController {
                 nav.pushViewController(vc, animated: true)
-            }else{
-                completion?(nil,KMRouterError.noNavigation)
+            } else {
+                completion?(nil, KMRouterError.noNavigation)
             }
             if let vc = vc as? KMRouterProtocol, let callback = completion {
                 vc.handle?(completion: callback)
             }
-        }else{
-            completion?(nil,KMRouterError.badURL)
+        } else {
+            completion?(nil, KMRouterError.badURL)
         }
     }
     
@@ -169,16 +163,14 @@ open class KMRouter :NSObject{
     ///   - control: 承载控制器
     ///   - completion: 统一回调
     @objc(persent:control:completion:)
-    public class func persent(_ urlStr:String?, _ control: UIViewController,_ completion:KMCallBack? = nil) {
+    public class func persent(_ urlStr: String?, _ control: UIViewController, _ completion: KMCallBack? = nil) {
         if let vc = viewControllerFromUrl(urlStr) {
             control.present(vc, animated: true, completion: nil)
             if let vc = vc as? KMRouterProtocol, let callback = completion {
                 vc.handle?(completion: callback)
             }
-        }else{
-            completion?(nil,KMRouterError.badURL)
+        } else {
+            completion?(nil, KMRouterError.badURL)
         }
     }
-
 }
-
