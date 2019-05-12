@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blueColor];
+    self.title = self.kmTitle;
     // Do any additional setup after loading the view.
 }
 - (void)handleWithCompletion:(void (^)(id _Nonnull result, NSError * _Nonnull))completion {

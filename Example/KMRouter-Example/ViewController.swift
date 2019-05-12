@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let url = KMConfigure.getModuleAUrlStr()
        
-        KMRouter.push(url, self) { (result, error) in
+        KMRouter.push("\(url)?titleName=张三", self) { (result, error) in
             if let result = result {
                 print("失败:\(String(describing: result))")
             }

@@ -13,10 +13,12 @@ import KMConfigure
 class KMModuleB: UIViewController,KMRouterProtocol {
 
     var callBack:KMCallBack?
+    @objc var titleSB:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.green
+        title = titleSB
     }
     
     func handle(completion: @escaping KMCallBack) {

@@ -12,7 +12,7 @@ PODS:
   - KMModuleD (0.0.1):
     - KMConfigure
     - KMRouter
-  - KMRouter (0.1.1)
+  - KMRouter (0.1.2)
 
 DEPENDENCIES:
   - KMConfigure (from `./KMConfigure/`)
@@ -42,8 +42,8 @@ SPEC CHECKSUMS:
   KMModuleB: f21a2a32c1c4adafabf728ef0166d8394cabeb68
   KMModuleC: b3a3fddb36544d26beb9ac9a788c280ebcbaf21c
   KMModuleD: b8840191ec1a637e8461220c91f6f91d76f07e77
-  KMRouter: 650b355445a46f379947f68ab7b8af4b09e1d9b3
+  KMRouter: ea1a09c3319dce10d55481584562fdfdf1e25107
 
 PODFILE CHECKSUM: c859e8d2959c552b5ec467a7dff96474fbaaadc9
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.0.rc.1

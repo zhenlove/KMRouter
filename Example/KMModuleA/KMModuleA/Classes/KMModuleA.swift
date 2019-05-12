@@ -33,7 +33,7 @@ class KMModuleA: UIViewController,KMRouterProtocol {
         
         callBack?(nil,KMRouterError.customError("我错了"))
 
-        KMRouter.push(KMConfigure.getModuleBUrlStr(), self) { (result, error) in
+        KMRouter.push("\(KMConfigure.getModuleBUrlStr())?titleSB=李四", self) { (result, error) in
             if let result = result {
                 print("失败:\(String(describing: result))")
             }

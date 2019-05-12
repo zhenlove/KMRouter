@@ -44,16 +44,40 @@ public enum KMRouterError:Error, LocalizedError {
     @objc optional func handle(completion:@escaping KMCallBack)
 }
 
-
-
 open class KMRouter :NSObject{
+    
+    /// 获取属性名
+    ///
+    /// - Parameter property: 属性对象
+    /// - Returns: 属性名
+    private class func getNameOf(property: objc_property_t) -> String? {
+        return String.init(cString: property_getName(property))
+    }
+    
+    /// 获取属性名
+    ///
+    /// - Returns: 属性名
+    private class func getProperties(cls:AnyClass) -> Array<String>? {
+        var count = UInt32()
+        guard let properties = class_copyPropertyList(cls, &count) else { return nil }
+        var types: Array<String> = []
+        for i in 0..<Int(count) {
+            let property: objc_property_t = properties[i]
+            /// 获取属性名
+            if let name = getNameOf(property: property) {
+                types.append(name)
+            }
+        }
+        free(properties)
+        return types
+    }
     
     
     /// 创建URL组件
     ///
     /// - Parameter urlStr: 路由地址
     /// - Returns: URL组件
-    class func createComponents(_ urlStr:String?) -> URLComponents? {
+    private class func createComponents(_ urlStr:String?) -> URLComponents? {
         if let urlStr = urlStr?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             return URLComponents.init(string: urlStr)
         }
@@ -64,9 +88,9 @@ open class KMRouter :NSObject{
     ///
     /// - Parameter components: URL组件
     /// - Returns: 类名
-    class func createClassType(_ components:URLComponents) -> UIViewController.Type? {
+    private class func createClassType(_ components:URLComponents) -> NSObject.Type? {
         if let className = components.url?.lastPathComponent {
-            return NSClassFromString(className) as? UIViewController.Type
+            return NSClassFromString(className) as? NSObject.Type
         }
         return nil
     }
@@ -77,26 +101,42 @@ open class KMRouter :NSObject{
     ///   - mocelClass: 类名
     ///   - components: URL组件
     /// - Returns: 实例
-    class func createObject(_ mocelClass:UIViewController.Type, _ components:URLComponents) -> UIViewController {
+    private class func createObject(_ mocelClass:NSObject.Type, _ components:URLComponents) -> NSObject {
         let obj = mocelClass.init()
-        if let parmt = components.queryItems {
+        
+        if let parmt = components.queryItems,
+            let arr = getProperties(cls: mocelClass){
             for item in parmt {
-                obj.setValue(item.value, forKey: item.name)
+                if arr.contains(item.name) {
+                    obj.setValue(item.value, forKey: item.name)
+                }else{
+                    print("\(NSStringFromClass(mocelClass))类=>不存在属性:\(item.name)")
+                }
             }
         }
         return obj
+    }
+    
+    /// 创建实例
+    ///
+    /// - Parameter urlStr: 路由地址
+    /// - Returns: 实例
+    @objc(objectFromUrl:)
+    public class func objectFromUrl(_ urlStr:String?) -> NSObject? {
+        if let components = createComponents(urlStr),
+            let modelClass = createClassType(components){
+            return createObject(modelClass, components)
+        }
+        return nil
     }
     
     /// 创建控制器
     ///
     /// - Parameter urlStr: 路由地址
     /// - Returns: 返回控制器
-    class func viewControllerFromUrl(_ urlStr:String?) -> UIViewController? {
-        if let components = createComponents(urlStr),
-            let modelClass = createClassType(components){
-                return createObject(modelClass, components)
-        }
-        return nil
+    @objc(viewControllerFromUrl:)
+    public class func viewControllerFromUrl(_ urlStr:String?) -> UIViewController? {
+        return objectFromUrl(urlStr) as? UIViewController
     }
     
     

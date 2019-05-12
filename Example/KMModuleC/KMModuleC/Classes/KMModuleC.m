@@ -33,7 +33,7 @@ typedef void(^CallBack)(id _Nonnull result,NSError *_Nonnull error);
         self.callBack(@"ssssssss",nil);
     }
     
-    [KMRouter push:[KMConfigure getModuleDUrlStr] control:self completion:^(id _Nonnull result, NSError * _Nonnull error) {
+    [KMRouter push:[[KMConfigure getModuleDUrlStr] stringByAppendingString:@"?kmTitle=王五"] control:self completion:^(id _Nonnull result, NSError * _Nonnull error) {
         if (result) {
             NSLog(@"%@",result);
         }
