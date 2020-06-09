@@ -1,6 +1,6 @@
 # KMRouter
 
-[![CI Status](https://img.shields.io/travis/zhenlove/KMRouter.svg?style=flat)](https://travis-ci.org/zhenlove/KMRouter)
+[![Build Status](https://travis-ci.com/zhenlove/KMRouter.svg?branch=master)](https://travis-ci.com/zhenlove/KMRouter)
 [![Version](https://img.shields.io/cocoapods/v/KMRouter.svg?style=flat)](https://cocoapods.org/pods/KMRouter)
 [![License](https://img.shields.io/cocoapods/l/KMRouter.svg?style=flat)](https://cocoapods.org/pods/KMRouter)
 [![Platform](https://img.shields.io/cocoapods/p/KMRouter.svg?style=flat)](https://cocoapods.org/pods/KMRouter)
