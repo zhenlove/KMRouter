@@ -6,12 +6,12 @@
 //  Copyright © 2019 KM. All rights reserved.
 //
 
-import KMConfigure
 import KMRouter
 import UIKit
+
 @objc(KMModuleB)
-class KMModuleB: UIViewController, KMRouterProtocol {
-    var callBack: KMCallBack?
+class KMModuleB: UIViewController {
+
     @objc var titleSB: String?
 
     override func viewDidLoad() {
@@ -20,19 +20,17 @@ class KMModuleB: UIViewController, KMRouterProtocol {
         title = titleSB
     }
 
-    func handle(completion: @escaping KMCallBack) {
-        callBack = completion
-    }
-
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        KMRouter.push(KMConfigure.getModuleCUrlStr(), self) { result, error in
-            if let result = result {
-                print("成功:\(String(describing: result))")
-            }
-
-            if let error = error {
-                print("失败:\(String(describing: error))")
-            }
-        }
+//        KMRouter.push(KMConfigure.getModuleCUrlStr(), self) { result, error in
+//            if let result = result {
+//                print("成功:\(String(describing: result))")
+//            }
+//
+//            if let error = error {
+//                print("失败:\(String(describing: error))")
+//            }
+//        }
+//        KMRouters.path(urlStr: KMConfigure.getModuleCUrlStr(), control: self.navigationController!)
+        KMRouters.path(urlStr: "KMModuleC")
     }
 }

@@ -2,56 +2,32 @@
 //  KMRouter.swift
 //  Pods
 //
-//  Created by Ed on 2018/7/27.
+//  Created by Ed on 2020/6/9.
 //
 
 import Foundation
 
-public typealias KMCallBack = (_ result: Any?, _ error: Error?) -> Void
+public typealias ConfigCallBack = (_ control: UIViewController) -> Void
 
-/// 路由错误信息
-public enum KMRouterError: Error, LocalizedError {
-    /// URL错误
-    case badURL
-    
-    /// 没有找到导航栏
-    case noNavigation
-    
-    /// 自定义错误可惜
-    case customError(String)
-    
-    /// 描述发生错误的本地化消息。
-    public var errorDescription: String? {
-        switch self {
-        case .badURL: return "URL 解析失败"
-        case .noNavigation: return "没有传入导航控制器"
-        case .customError(let str): return str
+extension URLComponents {
+     fileprivate var queryParameters: [String: Any]? {
+        
+        if let queryDic = self.queryItems {
+            var items: [String: Any] = [:]
+            for queryItem in queryDic {
+                items[queryItem.name] = queryItem.value
+            }
+            return items
+        }else{
+            return nil
         }
     }
 }
 
-/// 基础协议
-@objc public protocol KMRouterProtocol {
-    /// 方便持有block
-    @objc optional var callBack: KMCallBack? { get set }
-    
-    /// 返回数据给调用者
-    ///
-    /// - Parameter completion: 统一回调
-    @objc optional func handle(completion: @escaping KMCallBack)
-}
+public class KMRouters: NSObject {
 
-open class KMRouter: NSObject {
     /// 获取属性名
-    ///
-    /// - Parameter property: 属性对象
-    /// - Returns: 属性名
-    private class func getNameOf(property: objc_property_t) -> String? {
-        return String(cString: property_getName(property))
-    }
-    
-    /// 获取属性名
-    ///
+    /// - Parameter cls: Class
     /// - Returns: 属性名
     private class func getProperties(cls: AnyClass) -> [String]? {
         var count = UInt32()
@@ -60,117 +36,107 @@ open class KMRouter: NSObject {
         for i in 0..<Int(count) {
             let property: objc_property_t = properties[i]
             /// 获取属性名
-            if let name = getNameOf(property: property) {
-                types.append(name)
-            }
+            let name = String(cString: property_getName(property))
+            types.append(name)
         }
         free(properties)
         return types
     }
     
-    /// 创建URL组件
-    ///
-    /// - Parameter urlStr: 路由地址
-    /// - Returns: URL组件
-    private class func createComponents(_ urlStr: String?) -> URLComponents? {
-        if let urlStr = urlStr?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-            return URLComponents(string: urlStr)
-        }
-        return nil
-    }
-    
-    /// 创建类名
-    ///
-    /// - Parameter components: URL组件
-    /// - Returns: 类名
-    private class func createClassType(_ components: URLComponents) -> NSObject.Type? {
-        if let className = components.url?.lastPathComponent {
-            return NSClassFromString(className) as? NSObject.Type
-        }
-        return nil
-    }
-    
-    /// 创建实例
-    ///
+    /// 设置属性
     /// - Parameters:
-    ///   - mocelClass: 类名
-    ///   - components: URL组件
-    /// - Returns: 实例
-    private class func createObject(_ mocelClass: NSObject.Type, _ components: URLComponents) -> NSObject {
-        let obj = mocelClass.init()
-        
-        if let parmt = components.queryItems,
-            let arr = getProperties(cls: mocelClass) {
-            for item in parmt {
-                if arr.contains(item.name) {
-                    obj.setValue(item.value, forKey: item.name)
+    ///   - obj: 设置对象
+    ///   - attributeName: 属性名列表
+    ///   - parmt: 属性值列表
+    private class func setProperties( _ obj:NSObject, _ parmt:[String : Any]?) -> Void {
+
+        if let parmts = parmt,
+           let arrs = getProperties(cls: type(of: obj)) {
+            for (key,value) in parmts {
+                if arrs.contains(key) {
+                    obj.setValue(value, forKey: key)
                 } else {
-                    print("\(NSStringFromClass(mocelClass))类=>不存在属性:\(item.name)")
+                    print("\(NSStringFromClass(obj.self as! AnyClass))类=>不存在属性:\(key)")
                 }
             }
         }
-        return obj
     }
     
-    /// 创建实例
-    ///
-    /// - Parameter urlStr: 路由地址
-    /// - Returns: 实例
-    @objc(objectFromUrl:)
-    public class func objectFromUrl(_ urlStr: String?) -> NSObject? {
-        if let components = createComponents(urlStr),
-            let modelClass = createClassType(components) {
-            return createObject(modelClass, components)
+    private static func createViewController(_ className:String) -> UIViewController? {
+        guard let theClass = NSClassFromString(className) else {
+            print("\(className)不存在")
+            return nil
         }
-        return nil
+        guard let cls = theClass as? UIViewController.Type else {
+            print("对象类型不匹配")
+            return nil
+        }
+        return cls.init()
     }
     
-    /// 创建控制器
-    ///
-    /// - Parameter urlStr: 路由地址
-    /// - Returns: 返回控制器
-    @objc(viewControllerFromUrl:)
-    public class func viewControllerFromUrl(_ urlStr: String?) -> UIViewController? {
-        return objectFromUrl(urlStr) as? UIViewController
+    private static func findViewController(_ vc:UIViewController?) -> UIViewController? {
+        var theVC:UIViewController? = vc
+
+        if let newVC = vc as? UITabBarController {
+            theVC = KMRouters.findViewController(newVC.selectedViewController)
+        }
+        if let newVC = vc as? UINavigationController {
+            theVC = KMRouters.findViewController(newVC.visibleViewController)
+        }
+        if let newVC = vc?.presentedViewController {
+            theVC = newVC
+        }
+        return theVC
     }
     
-    /// 导航显示控制器
-    ///
+    private static func currentViewController() -> UIViewController? {
+        return findViewController(UIApplication.shared.keyWindow?.rootViewController)
+    }
+    
+    /// 导航加载控制器
     /// - Parameters:
-    ///   - urlStr: 路由地址
-    ///   - control: 承载控制器
-    ///   - completion: 统一回调
-    @objc(push:control:completion:)
-    public class func push(_ urlStr: String?, _ control: UIViewController, _ completion: KMCallBack? = nil) {
-        if let vc = viewControllerFromUrl(urlStr) {
-            if let nav = control.navigationController {
-                nav.pushViewController(vc, animated: true)
-            } else {
-                completion?(nil, KMRouterError.noNavigation)
+    ///   - className: 类名
+    ///   - param: 参数
+    @objc public static func push(className:String, param:[String : Any]?) {
+        guard let vc = createViewController(className) else {
+            return
+        }
+        setProperties(vc, param)
+        KMRouters.currentViewController()?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    /// 模态加载控制器
+    /// - Parameters:
+    ///   - className: 类名
+    ///   - param: 参数
+    ///   - callback: 配置回调
+    @objc public static func persent(className:String, param:[String : Any]?, callback:ConfigCallBack? = nil) {
+        guard let vc = createViewController(className) else {
+            return
+        }
+        callback?(vc)
+        setProperties(vc, param)
+        KMRouters.currentViewController()?.present(vc, animated: true, completion: nil)
+    }
+    
+    /// 根据URL路径加载控制器
+    /// - Parameters:
+    ///   - urlStr: URL路径
+    ///   - isPush: 是否采用导航控制器加载
+    ///   - callback: 配置回调
+    @objc public static func path(urlStr:String,isPush:Bool = true,callback:ConfigCallBack? = nil) {
+        if let urlStr = urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+            let components = URLComponents(string: urlStr) {
+            
+            guard let className = components.url?.lastPathComponent else {
+                return
             }
-            if let vc = vc as? KMRouterProtocol, let callback = completion {
-                vc.handle?(completion: callback)
+            if isPush {
+                KMRouters.push(className: className, param: components.queryParameters)
+            }else{
+                KMRouters.persent(className: className, param: components.queryParameters, callback: callback)
             }
-        } else {
-            completion?(nil, KMRouterError.badURL)
         }
     }
     
-    /// 模态显示控制器
-    ///
-    /// - Parameters:
-    ///   - urlStr: 路由地址
-    ///   - control: 承载控制器
-    ///   - completion: 统一回调
-    @objc(persent:control:completion:)
-    public class func persent(_ urlStr: String?, _ control: UIViewController, _ completion: KMCallBack? = nil) {
-        if let vc = viewControllerFromUrl(urlStr) {
-            control.present(vc, animated: true, completion: nil)
-            if let vc = vc as? KMRouterProtocol, let callback = completion {
-                vc.handle?(completion: callback)
-            }
-        } else {
-            completion?(nil, KMRouterError.badURL)
-        }
-    }
 }

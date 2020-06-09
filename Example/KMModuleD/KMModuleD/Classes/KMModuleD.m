@@ -7,34 +7,35 @@
 
 #import "KMModuleD.h"
 @import KMRouter;
-@import KMConfigure;
-@interface KMModuleD ()<KMRouterProtocol>
+@interface KMModuleD ()
 
 @end
 
 @implementation KMModuleD
-@synthesize callBack;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blueColor];
     self.title = self.kmTitle;
     // Do any additional setup after loading the view.
 }
-- (void)handleWithCompletion:(void (^)(id _Nonnull result, NSError * _Nonnull))completion {
-    self.callBack = completion;
-}
+
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     //    KMRouter *router = [[KMRouter alloc]init];
-    [KMRouter push:[KMConfigure getModuleAUrlStr]
-           control:self
-        completion:^(id _Nonnull result, NSError * _Nonnull error) {
-            if (result) {
-                NSLog(@"%@",result);
-            }
-            if (error) {
-                NSLog(@"%@",error.localizedDescription);
-            }
-        }];
+//    [KMRouter push:[KMConfigure getModuleAUrlStr]
+//           control:self
+//        completion:^(id _Nonnull result, NSError * _Nonnull error) {
+//            if (result) {
+//                NSLog(@"%@",result);
+//            }
+//            if (error) {
+//                NSLog(@"%@",error.localizedDescription);
+//            }
+//        }];
+//    [KMRouters pathWithUrlStr:[KMConfigure getModuleAUrlStr]
+//                      control:self.navigationController
+//                     callback:nil];
+    [KMRouters pathWithUrlStr:@"KMModuleA" isPush:true callback:nil];
 }
 /*
  #pragma mark - Navigation

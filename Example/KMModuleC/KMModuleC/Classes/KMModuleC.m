@@ -7,40 +7,35 @@
 
 #import "KMModuleC.h"
 @import KMRouter;
-@import KMConfigure;
 
-typedef void(^CallBack)(id _Nonnull result,NSError *_Nonnull error);
-
-@interface KMModuleC ()<KMRouterProtocol>
+@interface KMModuleC ()
 
 @end
 
 @implementation KMModuleC
-@synthesize callBack;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor orangeColor];
     // Do any additional setup after loading the view.
 }
-- (void)handleWithCompletion:(void (^)(id _Nonnull result, NSError * _Nonnull))completion {
-    self.callBack = completion;
-}
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    if (self.callBack) {
-        //        NSError *error = NSError
-        self.callBack(@"ssssssss",nil);
-    }
+
     
-    [KMRouter push:[[KMConfigure getModuleDUrlStr] stringByAppendingString:@"?kmTitle=王五"] control:self completion:^(id _Nonnull result, NSError * _Nonnull error) {
-        if (result) {
-            NSLog(@"%@",result);
-        }
-        if (error) {
-            NSLog(@"%@",error.description);
-        }
-    }];
+//    [KMRouter push:[[KMConfigure getModuleDUrlStr] stringByAppendingString:@"?kmTitle=王五"] control:self completion:^(id _Nonnull result, NSError * _Nonnull error) {
+//        if (result) {
+//            NSLog(@"%@",result);
+//        }
+//        if (error) {
+//            NSLog(@"%@",error.description);
+//        }
+//    }];
+//    [KMRouters pathWithUrlStr:[[KMConfigure getModuleDUrlStr] stringByAppendingString:@"?kmTitle=王五"]
+//                      control:self.navigationController
+//                     callback:nil];
+    [KMRouters pathWithUrlStr:[@"KMModuleD" stringByAppendingString:@"?kmTitle=王五"] isPush:true callback:nil];
 }
 
 /*
