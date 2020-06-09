@@ -25,6 +25,10 @@ extension URLComponents {
 }
 
 public class KMRouters: NSObject {
+    
+    private override init() {
+        
+    }
 
     /// 获取属性名
     /// - Parameter cls: Class
