@@ -35,7 +35,7 @@
 //    [KMRouters pathWithUrlStr:[[KMConfigure getModuleDUrlStr] stringByAppendingString:@"?kmTitle=王五"]
 //                      control:self.navigationController
 //                     callback:nil];
-    [KMRouters pathWithUrlStr:[@"KMModuleD" stringByAppendingString:@"?kmTitle=王五"] isPush:true callback:nil];
+    [KMRouter pathWithUrlStr:[@"KMModuleD" stringByAppendingString:@"?kmTitle=王五"] isPush:true callback:nil];
 }
 
 /*

@@ -31,6 +31,7 @@ class KMModuleB: UIViewController {
 //            }
 //        }
 //        KMRouters.path(urlStr: KMConfigure.getModuleCUrlStr(), control: self.navigationController!)
-        KMRouters.path(urlStr: "KMModuleC")
+        KMRouter.path(urlStr: "KMModuleC")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ChangeBackgroundColor"), object: nil, userInfo: nil)
     }
 }

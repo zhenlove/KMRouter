@@ -49,6 +49,10 @@ class ViewController: UIViewController {
 //        KMRouters.path(urlStr: "/KMModuleA?titleName=张三", control: self, { control in
 //            control.modalPresentationStyle = .fullScreen
 //        })
-        KMRouters.path(urlStr: "/KMModuleA.KMModuleA?titleName=张三")
+        KMRouter.path(urlStr: "/KMModuleA.KMModuleA?titleName=张三") { control in
+            control.handler = { funcMsg,result in
+                
+            }
+        }
     }
 }

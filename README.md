@@ -28,32 +28,30 @@ zhenlove, ************@******.com
 
 KMRouter is available under the MIT license. See the LICENSE file for more info. 
 
-## Note
 
-- 1.加载Swift时
+### 仅用于模块之间解耦合
+
+## 1.加载Swift类
+- 1.方法一
 ```Swift
 @objc(ModuleA)
 class ModuleA{
 
 }
+KMRouter.path(urlStr: "KMModuleA?titleName=张三")
 ```
-- 2.给Swift对象赋值时,属性前要加@objc
+- 2.方法二
 ```Swift
-@objc var titleName: String?
+// 报名.类名
+KMRouter.path(urlStr: "KMModuleA.KMModuleA?titleName=张三")
 ```
-
-- 3.当需要返回数据时需要遵循
-```Objc
-<KMRouterProtocol>
-```
-- 4.当需要持有KMCallBack时
-    
- obcj
-```Objc
-@implementation KMModuleD
-@synthesize callBack;
-```
-swift
+## 模块间通信
+* 采用通知模式返回数据
 ```Swift
-var callBack: KMCallBack?
+// 添加通知
+NotificationCenter.default.addObserver(self, selector: #selector(self.notificationAction(_:)), name: Notification.Name(rawValue: "ChangeBackgroundColor"), object: nil)
+// 移除通知
+NotificationCenter.default.removeObserver(self)
+// 发送通知
+NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ChangeBackgroundColor"), object: nil, userInfo: nil)
 ```

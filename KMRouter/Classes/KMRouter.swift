@@ -8,7 +8,7 @@
 import Foundation
 
 public typealias ConfigCallBack = (_ control: UIViewController) -> Void
-
+public typealias Handler = (_ funcMsg:String?,_ result:Any?) -> Void
 extension URLComponents {
      fileprivate var queryParameters: [String: Any]? {
         
@@ -24,7 +24,20 @@ extension URLComponents {
     }
 }
 
-public class KMRouters: NSObject {
+fileprivate var handlerKey:Void?
+
+extension UIViewController {
+   public var handler:Handler?{
+        get{
+            return objc_getAssociatedObject(self, &handlerKey) as? Handler
+        }
+        set{
+            objc_setAssociatedObject(self, &handlerKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+        }
+    }
+}
+
+public class KMRouter: NSObject {
     
     private override init() {
         
@@ -82,10 +95,10 @@ public class KMRouters: NSObject {
         var theVC:UIViewController? = vc
 
         if let newVC = vc as? UITabBarController {
-            theVC = KMRouters.findViewController(newVC.selectedViewController)
+            theVC = KMRouter.findViewController(newVC.selectedViewController)
         }
         if let newVC = vc as? UINavigationController {
-            theVC = KMRouters.findViewController(newVC.visibleViewController)
+            theVC = KMRouter.findViewController(newVC.visibleViewController)
         }
         if let newVC = vc?.presentedViewController {
             theVC = newVC
@@ -101,12 +114,13 @@ public class KMRouters: NSObject {
     /// - Parameters:
     ///   - className: 类名
     ///   - param: 参数
-    @objc public static func push(className:String, param:[String : Any]?) {
+    @objc public static func push(className:String, param:[String : Any]?, callback:ConfigCallBack? = nil) {
         guard let vc = createViewController(className) else {
             return
         }
+        callback?(vc)
         setProperties(vc, param)
-        KMRouters.currentViewController()?.navigationController?.pushViewController(vc, animated: true)
+        KMRouter.currentViewController()?.navigationController?.pushViewController(vc, animated: true)
     }
     
     /// 模态加载控制器
@@ -120,7 +134,7 @@ public class KMRouters: NSObject {
         }
         callback?(vc)
         setProperties(vc, param)
-        KMRouters.currentViewController()?.present(vc, animated: true, completion: nil)
+        KMRouter.currentViewController()?.present(vc, animated: true, completion: nil)
     }
     
     /// 根据URL路径加载控制器
@@ -136,9 +150,9 @@ public class KMRouters: NSObject {
                 return
             }
             if isPush {
-                KMRouters.push(className: className, param: components.queryParameters)
+                KMRouter.push(className: className, param: components.queryParameters, callback: callback)
             }else{
-                KMRouters.persent(className: className, param: components.queryParameters, callback: callback)
+                KMRouter.persent(className: className, param: components.queryParameters, callback: callback)
             }
         }
     }

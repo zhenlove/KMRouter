@@ -9,7 +9,7 @@
 import KMRouter
 import UIKit
 
-@objc(KMModuleA)
+//@objc(KMModuleA)
 class KMModuleA: UIViewController {
     
     @objc var titleName: String?
@@ -18,9 +18,21 @@ class KMModuleA: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.red
         title = titleName
+        NotificationCenter.default.addObserver(self, selector: #selector(self.notificationAction(_:)), name: Notification.Name(rawValue: "ChangeBackgroundColor"), object: nil)
+        
+    }
+    
+    @objc func notificationAction(_ notification:Notification) {
+
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        KMRouters.path(urlStr: "KMModuleB.KMModuleB?titleSB=李四")
+//        handler?(#function,"eeee")
+        KMRouter.path(urlStr: "/KMModuleB.KMModuleB?titleSB=李四")
+//        KMRouters.path(urlStr: "/KMModuleA.KMModuleA?titleName=张三")
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
+

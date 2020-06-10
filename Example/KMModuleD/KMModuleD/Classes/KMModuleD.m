@@ -35,7 +35,7 @@
 //    [KMRouters pathWithUrlStr:[KMConfigure getModuleAUrlStr]
 //                      control:self.navigationController
 //                     callback:nil];
-    [KMRouters pathWithUrlStr:@"KMModuleA" isPush:true callback:nil];
+    [KMRouter pathWithUrlStr:@"KMModuleA" isPush:true callback:nil];
 }
 /*
  #pragma mark - Navigation
