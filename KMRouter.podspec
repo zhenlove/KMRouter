@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
   s.source_files = 'KMRouter/Classes/*.swift'
   
-  s.dependency 'KMTools','~> 0.1.0'
+  s.dependency 'KMTools','>= 0.1.0'
 end
