@@ -12,7 +12,9 @@ PODS:
   - KMModuleD (0.0.1):
     - KMConfigure
     - KMRouter
-  - KMRouter (0.1.3)
+  - KMRouter (0.1.5):
+    - KMTools
+  - KMTools (0.1.1)
 
 DEPENDENCIES:
   - KMConfigure (from `./KMConfigure/`)
@@ -21,6 +23,10 @@ DEPENDENCIES:
   - KMModuleC (from `./KMModuleC/`)
   - KMModuleD (from `./KMModuleD/`)
   - KMRouter (from `../`)
+
+SPEC REPOS:
+  https://gitee.com/zhenlove/zhenSpecs.git:
+    - KMTools
 
 EXTERNAL SOURCES:
   KMConfigure:
@@ -38,12 +44,13 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   KMConfigure: 079f827433783599568b36fb482c3239cfdb2053
-  KMModuleA: e2ec0c4da9f3a5b24bd644328ccc19c422fb5a41
-  KMModuleB: f21a2a32c1c4adafabf728ef0166d8394cabeb68
-  KMModuleC: b3a3fddb36544d26beb9ac9a788c280ebcbaf21c
-  KMModuleD: b8840191ec1a637e8461220c91f6f91d76f07e77
-  KMRouter: 41f6cc008553d00630431ab83674bf4d762128e7
+  KMModuleA: d73ed76bfb402fae53575e7cfeaf66bfc9214c64
+  KMModuleB: c6681e73e205b6d4c29a3d9a2644866f46d07835
+  KMModuleC: 18c85a5882a61bc8e705143faec0c6de8c36de32
+  KMModuleD: b7df1a13468fb2f0fcd3676fd9dc28c700a76053
+  KMRouter: 6dd1da3b1a29eebeab0e0e95b35635a5403ccd4b
+  KMTools: b639b57a59f255f090993260ccd82d38e2877ea3
 
-PODFILE CHECKSUM: c859e8d2959c552b5ec467a7dff96474fbaaadc9
+PODFILE CHECKSUM: 58021b2400a376703256649ad94c7d1677880868
 
 COCOAPODS: 1.9.2

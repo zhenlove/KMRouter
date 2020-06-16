@@ -1,7 +1,7 @@
 #use_frameworks!
 source 'https://gitee.com/zhenlove/zhenSpecs.git'
 source 'https://cdn.cocoapods.org/'
-platform :ios, '10.0'
+platform :ios, '9.0'
 
 target 'KMRouter-Example' do
 
