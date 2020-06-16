@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import KMTools
 public typealias ConfigCallBack = (_ control: UIViewController) -> Void
 public typealias Handler = (_ funcMsg:String?,_ result:Any?) -> Void
 extension URLComponents {
@@ -73,7 +73,7 @@ public class KMRouter: NSObject {
                 if arrs.contains(key) {
                     obj.setValue(value, forKey: key)
                 } else {
-                    print("\(NSStringFromClass(obj.self as! AnyClass))类=>不存在属性:\(key)")
+                    print("\(NSStringFromClass(type(of: obj)))类=>不存在属性:\(key)")
                 }
             }
         }
@@ -91,25 +91,6 @@ public class KMRouter: NSObject {
         return cls.init()
     }
     
-    private static func findViewController(_ vc:UIViewController?) -> UIViewController? {
-        var theVC:UIViewController? = vc
-
-        if let newVC = vc as? UITabBarController {
-            theVC = KMRouter.findViewController(newVC.selectedViewController)
-        }
-        if let newVC = vc as? UINavigationController {
-            theVC = KMRouter.findViewController(newVC.visibleViewController)
-        }
-        if let newVC = vc?.presentedViewController {
-            theVC = newVC
-        }
-        return theVC
-    }
-    
-    private static func currentViewController() -> UIViewController? {
-        return findViewController(UIApplication.shared.keyWindow?.rootViewController)
-    }
-    
     /// 导航加载控制器
     /// - Parameters:
     ///   - className: 类名
@@ -120,7 +101,7 @@ public class KMRouter: NSObject {
         }
         callback?(vc)
         setProperties(vc, param)
-        KMRouter.currentViewController()?.navigationController?.pushViewController(vc, animated: true)
+        KMTools.currentNavigationController()?.pushViewController(vc, animated: true)
     }
     
     /// 模态加载控制器
@@ -134,7 +115,7 @@ public class KMRouter: NSObject {
         }
         callback?(vc)
         setProperties(vc, param)
-        KMRouter.currentViewController()?.present(vc, animated: true, completion: nil)
+        KMTools.currentViewController()?.present(vc, animated: true, completion: nil)
     }
     
     /// 根据URL路径加载控制器
